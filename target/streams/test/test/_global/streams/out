@@ -1,45 +1,45 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.FFTPipelineSpec, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.IFFTSpec, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(rv32i.core.ForwardingUnitTest, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(rv32i.core.HazardDetectionTest, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(gcd.GCDSpec, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(Pipeline.TOPTest, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.FFTSpec, org.scalatest.tools.Framework$$anon$1@1f965fd8, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(rv32i.core.ForwardingUnitTest, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(rv32i.core.HazardDetectionTest, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.FFTPipelineSpec, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.FFTSpec, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(FFT.IFFTSpec, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(Pipeline.TOPTest, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(gcd.GCDSpec, org.scalatest.tools.Framework$$anon$1@6c2170bd, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mTOPTest:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- 5-Stage test[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mGCDSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- Gcd should calculate proper greatest common denominator[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mForwardingUnitTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mForwardingUnit[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should work correctly[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHazardDetectionTest:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHazardDetectionUnit[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should detect load-use hazard when rs1 matches[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should detect load-use hazard when rs2 matches[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not detect hazard when no load-use condition exists[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not detect hazard when mem_read_ex is false[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mForwardingUnitTest:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mForwardingUnit[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should work correctly[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mGCDSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Gcd should calculate proper greatest common denominator[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mFFTSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mFFT[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should perform 8-point FFT operation[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should perform 8-point FFT operation *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  0.07875261262059212 was not less than 0.01 Energy conservation error (0.07875261262059212) exceeds tolerance (0.01) (FFTTest.scala:42)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should handle zero input for 8-point FFT[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should handle impulse input correctly *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  0.01240234375 was not less than 0.01 Magnitude error (0.01240234375) exceeds tolerance (0.01) (FFTTest.scala:51)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mIFFTSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mIFFT[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should 執行8點IFFT運算[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should 正確處理零輸入[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should 在FFT-IFFT往返後恢復原始信號 *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  2.5474342105676984 was not less than 0.3 重建誤差過大: 254.74% (IFFTTest.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should 正確處理直流信號 *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  0.156201171875 was not less than 0.02 直流信號重建誤差過大: realErr=0.156201, imagErr=0.000000 (IFFTTest.scala:223)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should handle impulse input correctly[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mFFTPipelineSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mFFTPipeline[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should perform basic pipeline operation[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should handle zero input correctly[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should progress through pipeline stages correctly[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mIFFTSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mIFFT[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should 執行8點IFFT運算[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should 正確處理零輸入[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should 在FFT-IFFT往返後恢復原始信號 *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  1.2829068290898682 was not less than 0.3 重建誤差過大: 128.29% (IFFTTest.scala:178)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should 正確處理直流信號 *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  0.156201171875 was not less than 0.02 直流信號重建誤差過大: realErr=0.156201, imagErr=0.000000 (IFFTTest.scala:223)[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for ScalaCheck not available.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 5 seconds, 53 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 5 seconds, 14 milliseconds.[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 17[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 7, aborted 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 14, failed 3, canceled 0, ignored 0, pending 0[0m[0m

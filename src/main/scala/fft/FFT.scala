@@ -14,54 +14,43 @@ class FFT(val numPoints: Int) extends Module {
     val done  = Output(Bool())
   })
 
-  // Parameters
-  private val logN = log2Ceil(numPoints)
-  private val TWIDDLE_BP = 16  // Increased precision
-  private val SCALE_FACTOR = (1 << TWIDDLE_BP).toDouble
+  for(i <- 0 until numPoints) {
+    io.out(i).real := 0.S
+    io.out(i).imag := 0.S
+  }
+  io.done := false.B
 
-  // Generate precise twiddle factors
-  def makeTwiddle(k: Int): ComplexNum = {
+  private val logN = log2Ceil(numPoints)
+  private val TWIDDLE_BP = 14
+  
+  def makeTwiddle(k: Int): (Int, Int) = {
     val angle = -2.0 * Pi * k / numPoints
-    val wr = (cos(angle) * SCALE_FACTOR).round.toInt
-    val wi = (sin(angle) * SCALE_FACTOR).round.toInt
-    val cpx = Wire(new ComplexNum)
-    cpx.real := wr.S
-    cpx.imag := wi.S
-    cpx
+    val scale = (1 << TWIDDLE_BP).toDouble
+    val wr = (cos(angle) * scale).round.toInt
+    val wi = (sin(angle) * scale).round.toInt
+    (wr, wi)
   }
 
-  val twiddleROM = VecInit((0 until numPoints/2).map(makeTwiddle))
+  val twiddleROM = VecInit((0 until numPoints/2).map { i =>
+    val cpx = Wire(new ComplexNum)
+    val (r, im) = makeTwiddle(i)
+    cpx.real := r.S
+    cpx.imag := im.S
+    cpx
+  })
 
-  // State machine and registers
-  val idle :: bitRev :: compute :: normalize :: done :: Nil = Enum(5)
+  val dataRegs = Reg(Vec(numPoints, new ComplexNum))
+  val idle :: bitRev :: compute :: doneState :: Nil = Enum(4)
   val state = RegInit(idle)
   
-  val dataRegs = Reg(Vec(numPoints, new ComplexNum))
   val indexCnt = RegInit(0.U(log2Ceil(numPoints + 1).W))
   val stageCnt = RegInit(0.U(log2Ceil(logN + 1).W))
   val blockCnt = RegInit(0.U(log2Ceil(numPoints).W))
-  val kCnt     = RegInit(0.U(log2Ceil(numPoints).W))
-
-  // Default outputs
-  io.done := state === done
-  io.out := dataRegs
-
-  def roundShift(x: SInt, shift: UInt): SInt = {
-    val mask = ((1.U << shift) - 1.U).asUInt
-    val roundBit = (shift - 1.U)
-    val round = (x > 0.S) && ((x.asUInt & mask) > (1.U << roundBit))
-    val shifted = x >> shift
-    Mux(round, shifted + 1.S, shifted)
-  }
+  val kCnt = RegInit(0.U(log2Ceil(numPoints).W))
 
   switch(state) {
     is(idle) {
       when(io.start) {
-        // Initialize data with prescaling
-        for (i <- 0 until numPoints) {
-          dataRegs(i).real := io.in(i).real << 3
-          dataRegs(i).imag := io.in(i).imag << 3
-        }
         indexCnt := 0.U
         stageCnt := 0.U
         blockCnt := 0.U
@@ -71,16 +60,19 @@ class FFT(val numPoints: Int) extends Module {
     }
 
     is(bitRev) {
-      when(indexCnt < numPoints.U) {
-        val i = indexCnt
-        val r = bitReverse(i, logN)
-        val temp = dataRegs(i)
-        dataRegs(i) := dataRegs(r)
-        dataRegs(r) := temp
-        indexCnt := indexCnt + 1.U
-      }.otherwise {
-        state := compute
+      val i = indexCnt
+      val r = bitReverse(i, logN)
+      dataRegs(r).real := io.in(i).real
+      dataRegs(r).imag := io.in(i).imag
+
+      when(i === (numPoints-1).U) {
         indexCnt := 0.U
+        stageCnt := 0.U
+        blockCnt := 0.U
+        kCnt := 0.U
+        state := compute
+      } .otherwise {
+        indexCnt := i + 1.U
       }
     }
 
@@ -88,26 +80,43 @@ class FFT(val numPoints: Int) extends Module {
       when(stageCnt < logN.U) {
         val halfSize = 1.U << stageCnt
         val blockSize = halfSize << 1
+        val numBlock = numPoints.U / blockSize
+
         val iIdx = blockCnt * blockSize + kCnt
         val jIdx = iIdx + halfSize
-        val twiddleIdx = (kCnt * (numPoints.U >> (stageCnt + 1.U))) % (numPoints.U / 2.U)
-        
+
+        val twStep = (numPoints.U / blockSize)
+        val wIdx = kCnt * twStep
+        val wCpx = twiddleROM(wIdx % (numPoints/2).U)
+
         val a = dataRegs(iIdx)
         val b = dataRegs(jIdx)
-        val w = twiddleROM(twiddleIdx)
-        
-        val (out1, out2) = butterfly(a, b, w)
-        
-        // Controlled scaling during computation
-        val shiftAmt = Mux(stageCnt === (logN-1).U, 2.U, 1.U)
-        dataRegs(iIdx).real := roundShift(out1.real, shiftAmt)
-        dataRegs(iIdx).imag := roundShift(out1.imag, shiftAmt)
-        dataRegs(jIdx).real := roundShift(out2.real, shiftAmt)
-        dataRegs(jIdx).imag := roundShift(out2.imag, shiftAmt)
+
+        val out1 = Wire(new ComplexNum)
+        val out2 = Wire(new ComplexNum)
+
+        when(stageCnt === (logN-1).U) {
+          val results = butterflyWithScale(a, b, wCpx)
+          out1.real := results._1.real
+          out1.imag := results._1.imag
+          out2.real := results._2.real
+          out2.imag := results._2.imag
+        }.otherwise {
+          val results = butterflyNoScale(a, b, wCpx)
+          out1.real := results._1.real
+          out1.imag := results._1.imag
+          out2.real := results._2.real
+          out2.imag := results._2.imag
+        }
+
+        dataRegs(iIdx).real := out1.real
+        dataRegs(iIdx).imag := out1.imag
+        dataRegs(jIdx).real := out2.real
+        dataRegs(jIdx).imag := out2.imag
 
         when(kCnt === (halfSize - 1.U)) {
           kCnt := 0.U
-          when(blockCnt === ((numPoints.U / blockSize) - 1.U)) {
+          when(blockCnt === (numBlock - 1.U)) {
             blockCnt := 0.U
             stageCnt := stageCnt + 1.U
           }.otherwise {
@@ -117,50 +126,68 @@ class FFT(val numPoints: Int) extends Module {
           kCnt := kCnt + 1.U
         }
       }.otherwise {
-        state := normalize
+        state := doneState
       }
     }
 
-    is(normalize) {
-      // Final normalization
-      for (i <- 0 until numPoints) {
-        dataRegs(i).real := roundShift(dataRegs(i).real, 1.U)
-        dataRegs(i).imag := roundShift(dataRegs(i).imag, 1.U)
+    is(doneState) {
+      io.done := true.B
+      for(i <- 0 until numPoints) {
+        io.out(i).real := dataRegs(i).real
+        io.out(i).imag := dataRegs(i).imag
       }
-      state := done
-    }
-
-    is(done) {
       when(!io.start) {
         state := idle
       }
     }
   }
 
-  // Optimized butterfly computation
-  def butterfly(a: ComplexNum, b: ComplexNum, w: ComplexNum): (ComplexNum, ComplexNum) = {
+  def butterflyNoScale(a: ComplexNum, b: ComplexNum, w: ComplexNum): (ComplexNum, ComplexNum) = {
     val out1 = Wire(new ComplexNum)
     val out2 = Wire(new ComplexNum)
-    
-    // High precision complex multiplication for twiddle factor
-    val bwr = (b.real * w.real) >> (TWIDDLE_BP - 1)  // Keep extra precision
-    val bwi = (b.imag * w.imag) >> (TWIDDLE_BP - 1)
-    val brwi = (b.real * w.imag) >> (TWIDDLE_BP - 1)
-    val biwr = (b.imag * w.real) >> (TWIDDLE_BP - 1)
 
-    val mulReal = bwr - bwi
-    val mulImag = brwi + biwr
+    val brwr = b.real * w.real
+    val biwi = b.imag * w.imag
+    val brwi = b.real * w.imag
+    val biwr = b.imag * w.real
 
-    // Butterfly addition/subtraction
-    out1.real := (a.real +& mulReal).asSInt
-    out1.imag := (a.imag +& mulImag).asSInt
-    out2.real := (a.real -& mulReal).asSInt
-    out2.imag := (a.imag -& mulImag).asSInt
+    val bwReal = ((brwr - biwi) >> TWIDDLE_BP).asSInt
+    val bwImag = ((brwi + biwr) >> TWIDDLE_BP).asSInt
+
+    out1.real := a.real + bwReal
+    out1.imag := a.imag + bwImag
+    out2.real := a.real - bwReal
+    out2.imag := a.imag - bwImag
 
     (out1, out2)
   }
 
-  def bitReverse(in: UInt, width: Int): UInt = {
-    Cat((0 until width).map(i => in(i)).reverse)
+  def butterflyWithScale(a: ComplexNum, b: ComplexNum, w: ComplexNum): (ComplexNum, ComplexNum) = {
+    val out1 = Wire(new ComplexNum)
+    val out2 = Wire(new ComplexNum)
+
+    val brwr = b.real * w.real
+    val biwi = b.imag * w.imag
+    val brwi = b.real * w.imag
+    val biwr = b.imag * w.real
+
+    val bwReal = ((brwr - biwi) >> TWIDDLE_BP).asSInt
+    val bwImag = ((brwi + biwr) >> TWIDDLE_BP).asSInt
+
+    val scaled1Real = (a.real + bwReal) >> logN
+    val scaled1Imag = (a.imag + bwImag) >> logN
+    val scaled2Real = (a.real - bwReal) >> logN
+    val scaled2Imag = (a.imag - bwImag) >> logN
+
+    out1.real := scaled1Real
+    out1.imag := scaled1Imag
+    out2.real := scaled2Real
+    out2.imag := scaled2Imag
+
+    (out1, out2)
+  }
+
+  def bitReverse(in: UInt, length: Int): UInt = {
+    Cat((0 until length).map(i => in(i)).reverse)
   }
 }

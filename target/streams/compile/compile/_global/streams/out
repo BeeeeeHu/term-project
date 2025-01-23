@@ -1,40 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:24: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:53: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int(2)[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:56: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:24: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:53: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int(2)[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:56: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:26: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
-[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
-[0m[[0m[31merror[0m] [0m[0m                         ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:39: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:42: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
-[0m[[0m[31merror[0m] [0m[0m required: T[0m
-[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
-[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
-[0m[[0m[31merror[0m] [0m[0m9 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:95:13: constructor cannot be instantiated to expected type;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : (T1, T2)[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bundle{val out1: FFT.ComplexNum; val out2: FFT.ComplexNum}[0m
+[0m[[0m[31merror[0m] [0m[0m        val (out1, out2) = Wire((new Bundle {[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
