@@ -1,0 +1,521 @@
+FIRRTL version 1.1.0
+circuit FFT :
+  module FFT :
+    input clock : Clock
+    input reset : UInt<1>
+    input io_in_0_real : SInt<32>
+    input io_in_0_imag : SInt<32>
+    input io_in_1_real : SInt<32>
+    input io_in_1_imag : SInt<32>
+    input io_in_2_real : SInt<32>
+    input io_in_2_imag : SInt<32>
+    input io_in_3_real : SInt<32>
+    input io_in_3_imag : SInt<32>
+    input io_in_4_real : SInt<32>
+    input io_in_4_imag : SInt<32>
+    input io_in_5_real : SInt<32>
+    input io_in_5_imag : SInt<32>
+    input io_in_6_real : SInt<32>
+    input io_in_6_imag : SInt<32>
+    input io_in_7_real : SInt<32>
+    input io_in_7_imag : SInt<32>
+    output io_out_0_real : SInt<32>
+    output io_out_0_imag : SInt<32>
+    output io_out_1_real : SInt<32>
+    output io_out_1_imag : SInt<32>
+    output io_out_2_real : SInt<32>
+    output io_out_2_imag : SInt<32>
+    output io_out_3_real : SInt<32>
+    output io_out_3_imag : SInt<32>
+    output io_out_4_real : SInt<32>
+    output io_out_4_imag : SInt<32>
+    output io_out_5_real : SInt<32>
+    output io_out_5_imag : SInt<32>
+    output io_out_6_real : SInt<32>
+    output io_out_6_imag : SInt<32>
+    output io_out_7_real : SInt<32>
+    output io_out_7_imag : SInt<32>
+    input io_start : UInt<1>
+    output io_done : UInt<1>
+
+    reg dataRegs_0_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_0_real) @[FFT.scala 59:21]
+    reg dataRegs_0_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_0_imag) @[FFT.scala 59:21]
+    reg dataRegs_1_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_1_real) @[FFT.scala 59:21]
+    reg dataRegs_1_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_1_imag) @[FFT.scala 59:21]
+    reg dataRegs_2_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_2_real) @[FFT.scala 59:21]
+    reg dataRegs_2_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_2_imag) @[FFT.scala 59:21]
+    reg dataRegs_3_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_3_real) @[FFT.scala 59:21]
+    reg dataRegs_3_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_3_imag) @[FFT.scala 59:21]
+    reg dataRegs_4_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_4_real) @[FFT.scala 59:21]
+    reg dataRegs_4_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_4_imag) @[FFT.scala 59:21]
+    reg dataRegs_5_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_5_real) @[FFT.scala 59:21]
+    reg dataRegs_5_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_5_imag) @[FFT.scala 59:21]
+    reg dataRegs_6_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_6_real) @[FFT.scala 59:21]
+    reg dataRegs_6_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_6_imag) @[FFT.scala 59:21]
+    reg dataRegs_7_real : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_7_real) @[FFT.scala 59:21]
+    reg dataRegs_7_imag : SInt<32>, clock with :
+      reset => (UInt<1>("h0"), dataRegs_7_imag) @[FFT.scala 59:21]
+    reg state : UInt<2>, clock with :
+      reset => (UInt<1>("h0"), state) @[FFT.scala 65:22]
+    reg indexCnt : UInt<4>, clock with :
+      reset => (UInt<1>("h0"), indexCnt) @[FFT.scala 68:25]
+    reg stageCnt : UInt<2>, clock with :
+      reset => (UInt<1>("h0"), stageCnt) @[FFT.scala 69:25]
+    reg blockCnt : UInt<3>, clock with :
+      reset => (UInt<1>("h0"), blockCnt) @[FFT.scala 70:25]
+    reg kCnt : UInt<3>, clock with :
+      reset => (UInt<1>("h0"), kCnt) @[FFT.scala 71:25]
+    node _T = eq(UInt<2>("h0"), state) @[FFT.scala 76:17]
+    node _GEN_0 = mux(io_start, UInt<1>("h0"), indexCnt) @[FFT.scala 79:22 80:18 68:25]
+    node _GEN_1 = mux(io_start, UInt<1>("h0"), stageCnt) @[FFT.scala 79:22 81:18 69:25]
+    node _GEN_2 = mux(io_start, UInt<1>("h0"), blockCnt) @[FFT.scala 79:22 82:18 70:25]
+    node _GEN_3 = mux(io_start, UInt<1>("h0"), kCnt) @[FFT.scala 79:22 83:18 71:25]
+    node _GEN_4 = mux(io_start, UInt<2>("h1"), state) @[FFT.scala 79:22 84:18 65:22]
+    node _T_1 = eq(UInt<2>("h1"), state) @[FFT.scala 76:17]
+    node _r_T = bits(indexCnt, 0, 0) @[FFT.scala 201:37]
+    node _r_T_1 = bits(indexCnt, 1, 1) @[FFT.scala 201:37]
+    node _r_T_2 = bits(indexCnt, 2, 2) @[FFT.scala 201:37]
+    node r_hi = cat(_r_T_2, _r_T_1) @[Cat.scala 33:92]
+    node r = cat(r_hi, _r_T) @[Cat.scala 33:92]
+    node _dataRegs_real_T = bits(indexCnt, 2, 0)
+    node _GEN_13 = validif(eq(UInt<1>("h0"), _dataRegs_real_T), io_in_0_real) @[FFT.scala 92:{24,24}]
+    node _GEN_14 = mux(eq(UInt<1>("h1"), _dataRegs_real_T), io_in_1_real, _GEN_13) @[FFT.scala 92:{24,24}]
+    node _GEN_15 = mux(eq(UInt<2>("h2"), _dataRegs_real_T), io_in_2_real, _GEN_14) @[FFT.scala 92:{24,24}]
+    node _GEN_16 = mux(eq(UInt<2>("h3"), _dataRegs_real_T), io_in_3_real, _GEN_15) @[FFT.scala 92:{24,24}]
+    node _GEN_17 = mux(eq(UInt<3>("h4"), _dataRegs_real_T), io_in_4_real, _GEN_16) @[FFT.scala 92:{24,24}]
+    node _GEN_18 = mux(eq(UInt<3>("h5"), _dataRegs_real_T), io_in_5_real, _GEN_17) @[FFT.scala 92:{24,24}]
+    node _GEN_19 = mux(eq(UInt<3>("h6"), _dataRegs_real_T), io_in_6_real, _GEN_18) @[FFT.scala 92:{24,24}]
+    node _GEN_20 = mux(eq(UInt<3>("h7"), _dataRegs_real_T), io_in_7_real, _GEN_19) @[FFT.scala 92:{24,24}]
+    node _io_in_dataRegs_real_T_real = _GEN_20 @[FFT.scala 92:24]
+    node _dataRegs_r_real = _io_in_dataRegs_real_T_real @[FFT.scala 92:{24,24}]
+    node _GEN_5 = mux(eq(UInt<1>("h0"), r), _dataRegs_r_real, dataRegs_0_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_6 = mux(eq(UInt<1>("h1"), r), _dataRegs_r_real, dataRegs_1_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_7 = mux(eq(UInt<2>("h2"), r), _dataRegs_r_real, dataRegs_2_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_8 = mux(eq(UInt<2>("h3"), r), _dataRegs_r_real, dataRegs_3_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_9 = mux(eq(UInt<3>("h4"), r), _dataRegs_r_real, dataRegs_4_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_10 = mux(eq(UInt<3>("h5"), r), _dataRegs_r_real, dataRegs_5_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_11 = mux(eq(UInt<3>("h6"), r), _dataRegs_r_real, dataRegs_6_real) @[FFT.scala 59:21 92:{24,24}]
+    node _GEN_12 = mux(eq(UInt<3>("h7"), r), _dataRegs_r_real, dataRegs_7_real) @[FFT.scala 59:21 92:{24,24}]
+    node _dataRegs_imag_T = bits(indexCnt, 2, 0)
+    node _GEN_29 = validif(eq(UInt<1>("h0"), _dataRegs_imag_T), io_in_0_imag) @[FFT.scala 93:{24,24}]
+    node _GEN_30 = mux(eq(UInt<1>("h1"), _dataRegs_imag_T), io_in_1_imag, _GEN_29) @[FFT.scala 93:{24,24}]
+    node _GEN_31 = mux(eq(UInt<2>("h2"), _dataRegs_imag_T), io_in_2_imag, _GEN_30) @[FFT.scala 93:{24,24}]
+    node _GEN_32 = mux(eq(UInt<2>("h3"), _dataRegs_imag_T), io_in_3_imag, _GEN_31) @[FFT.scala 93:{24,24}]
+    node _GEN_33 = mux(eq(UInt<3>("h4"), _dataRegs_imag_T), io_in_4_imag, _GEN_32) @[FFT.scala 93:{24,24}]
+    node _GEN_34 = mux(eq(UInt<3>("h5"), _dataRegs_imag_T), io_in_5_imag, _GEN_33) @[FFT.scala 93:{24,24}]
+    node _GEN_35 = mux(eq(UInt<3>("h6"), _dataRegs_imag_T), io_in_6_imag, _GEN_34) @[FFT.scala 93:{24,24}]
+    node _GEN_36 = mux(eq(UInt<3>("h7"), _dataRegs_imag_T), io_in_7_imag, _GEN_35) @[FFT.scala 93:{24,24}]
+    node _io_in_dataRegs_imag_T_imag = _GEN_36 @[FFT.scala 93:24]
+    node _dataRegs_r_imag = _io_in_dataRegs_imag_T_imag @[FFT.scala 93:{24,24}]
+    node _GEN_21 = mux(eq(UInt<1>("h0"), r), _dataRegs_r_imag, dataRegs_0_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_22 = mux(eq(UInt<1>("h1"), r), _dataRegs_r_imag, dataRegs_1_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_23 = mux(eq(UInt<2>("h2"), r), _dataRegs_r_imag, dataRegs_2_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_24 = mux(eq(UInt<2>("h3"), r), _dataRegs_r_imag, dataRegs_3_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_25 = mux(eq(UInt<3>("h4"), r), _dataRegs_r_imag, dataRegs_4_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_26 = mux(eq(UInt<3>("h5"), r), _dataRegs_r_imag, dataRegs_5_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_27 = mux(eq(UInt<3>("h6"), r), _dataRegs_r_imag, dataRegs_6_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _GEN_28 = mux(eq(UInt<3>("h7"), r), _dataRegs_r_imag, dataRegs_7_imag) @[FFT.scala 59:21 93:{24,24}]
+    node _T_2 = eq(indexCnt, UInt<3>("h7")) @[FFT.scala 95:14]
+    node _indexCnt_T = add(indexCnt, UInt<1>("h1")) @[FFT.scala 102:23]
+    node _indexCnt_T_1 = tail(_indexCnt_T, 1) @[FFT.scala 102:23]
+    node _GEN_37 = mux(_T_2, UInt<1>("h0"), _indexCnt_T_1) @[FFT.scala 102:18 95:35 96:18]
+    node _GEN_38 = mux(_T_2, UInt<1>("h0"), stageCnt) @[FFT.scala 95:35 97:18 69:25]
+    node _GEN_39 = mux(_T_2, UInt<1>("h0"), blockCnt) @[FFT.scala 95:35 98:18 70:25]
+    node _GEN_40 = mux(_T_2, UInt<1>("h0"), kCnt) @[FFT.scala 95:35 99:18 71:25]
+    node _GEN_41 = mux(_T_2, UInt<2>("h2"), state) @[FFT.scala 100:18 65:22 95:35]
+    node _T_3 = eq(UInt<2>("h2"), state) @[FFT.scala 76:17]
+    node _T_4 = lt(stageCnt, UInt<2>("h3")) @[FFT.scala 108:21]
+    node halfSize = dshl(UInt<1>("h1"), stageCnt) @[FFT.scala 109:29]
+    node blockSize = shl(halfSize, 1) @[FFT.scala 110:34]
+    node numBlock = div(UInt<4>("h8"), blockSize) @[FFT.scala 111:37]
+    node _iIdx_T = mul(blockCnt, blockSize) @[FFT.scala 113:29]
+    node _iIdx_T_1 = add(_iIdx_T, kCnt) @[FFT.scala 113:41]
+    node iIdx = tail(_iIdx_T_1, 1) @[FFT.scala 113:41]
+    node _jIdx_T = add(iIdx, halfSize) @[FFT.scala 114:25]
+    node jIdx = tail(_jIdx_T, 1) @[FFT.scala 114:25]
+    node twStep = div(UInt<4>("h8"), blockSize) @[FFT.scala 116:35]
+    node wIdx = mul(kCnt, twStep) @[FFT.scala 117:27]
+    node _wCpx_T = rem(wIdx, UInt<3>("h4")) @[FFT.scala 118:38]
+    node _wCpx_T_1 = bits(_wCpx_T, 1, 0)
+    node _a_T = bits(iIdx, 2, 0)
+    node _b_T = bits(jIdx, 2, 0)
+    node _GEN_42 = validif(eq(UInt<1>("h0"), _b_T), dataRegs_0_real) @[FFT.scala 179:{23,23}]
+    node _GEN_43 = mux(eq(UInt<1>("h1"), _b_T), dataRegs_1_real, _GEN_42) @[FFT.scala 179:{23,23}]
+    node _GEN_44 = mux(eq(UInt<2>("h2"), _b_T), dataRegs_2_real, _GEN_43) @[FFT.scala 179:{23,23}]
+    node _GEN_45 = mux(eq(UInt<2>("h3"), _b_T), dataRegs_3_real, _GEN_44) @[FFT.scala 179:{23,23}]
+    node _GEN_46 = mux(eq(UInt<3>("h4"), _b_T), dataRegs_4_real, _GEN_45) @[FFT.scala 179:{23,23}]
+    node _GEN_47 = mux(eq(UInt<3>("h5"), _b_T), dataRegs_5_real, _GEN_46) @[FFT.scala 179:{23,23}]
+    node _GEN_48 = mux(eq(UInt<3>("h6"), _b_T), dataRegs_6_real, _GEN_47) @[FFT.scala 179:{23,23}]
+    node _GEN_49 = mux(eq(UInt<3>("h7"), _b_T), dataRegs_7_real, _GEN_48) @[FFT.scala 179:{23,23}]
+    node twiddleROM_cpx_real = SInt<32>("h4000") @[FFT.scala 49:19 51:14]
+    node twiddleROM_0_real = twiddleROM_cpx_real @[FFT.scala 48:{27,27}]
+    node _GEN_50 = validif(eq(UInt<1>("h0"), _wCpx_T_1), twiddleROM_0_real) @[FFT.scala 179:{23,23}]
+    node twiddleROM_cpx_1_real = SInt<32>("h2d41") @[FFT.scala 49:19 51:14]
+    node twiddleROM_1_real = twiddleROM_cpx_1_real @[FFT.scala 48:{27,27}]
+    node _GEN_51 = mux(eq(UInt<1>("h1"), _wCpx_T_1), twiddleROM_1_real, _GEN_50) @[FFT.scala 179:{23,23}]
+    node twiddleROM_cpx_2_real = SInt<32>("h0") @[FFT.scala 49:19 51:14]
+    node twiddleROM_2_real = twiddleROM_cpx_2_real @[FFT.scala 48:{27,27}]
+    node _GEN_52 = mux(eq(UInt<2>("h2"), _wCpx_T_1), twiddleROM_2_real, _GEN_51) @[FFT.scala 179:{23,23}]
+    node twiddleROM_cpx_3_real = SInt<32>("h-2d41") @[FFT.scala 49:19 51:14]
+    node twiddleROM_3_real = twiddleROM_cpx_3_real @[FFT.scala 48:{27,27}]
+    node _GEN_53 = mux(eq(UInt<2>("h3"), _wCpx_T_1), twiddleROM_3_real, _GEN_52) @[FFT.scala 179:{23,23}]
+    node _dataRegs_b_T_real = _GEN_49 @[FFT.scala 179:23]
+    node _twiddleROM_wCpx_T_1_real = _GEN_53 @[FFT.scala 179:23]
+    node brwr = mul(_dataRegs_b_T_real, _twiddleROM_wCpx_T_1_real) @[FFT.scala 179:23]
+    node _GEN_54 = validif(eq(UInt<1>("h0"), _b_T), dataRegs_0_imag) @[FFT.scala 180:{23,23}]
+    node _GEN_55 = mux(eq(UInt<1>("h1"), _b_T), dataRegs_1_imag, _GEN_54) @[FFT.scala 180:{23,23}]
+    node _GEN_56 = mux(eq(UInt<2>("h2"), _b_T), dataRegs_2_imag, _GEN_55) @[FFT.scala 180:{23,23}]
+    node _GEN_57 = mux(eq(UInt<2>("h3"), _b_T), dataRegs_3_imag, _GEN_56) @[FFT.scala 180:{23,23}]
+    node _GEN_58 = mux(eq(UInt<3>("h4"), _b_T), dataRegs_4_imag, _GEN_57) @[FFT.scala 180:{23,23}]
+    node _GEN_59 = mux(eq(UInt<3>("h5"), _b_T), dataRegs_5_imag, _GEN_58) @[FFT.scala 180:{23,23}]
+    node _GEN_60 = mux(eq(UInt<3>("h6"), _b_T), dataRegs_6_imag, _GEN_59) @[FFT.scala 180:{23,23}]
+    node _GEN_61 = mux(eq(UInt<3>("h7"), _b_T), dataRegs_7_imag, _GEN_60) @[FFT.scala 180:{23,23}]
+    node twiddleROM_cpx_imag = SInt<32>("h0") @[FFT.scala 49:19 52:14]
+    node twiddleROM_0_imag = twiddleROM_cpx_imag @[FFT.scala 48:{27,27}]
+    node _GEN_62 = validif(eq(UInt<1>("h0"), _wCpx_T_1), twiddleROM_0_imag) @[FFT.scala 180:{23,23}]
+    node twiddleROM_cpx_1_imag = SInt<32>("h-2d41") @[FFT.scala 49:19 52:14]
+    node twiddleROM_1_imag = twiddleROM_cpx_1_imag @[FFT.scala 48:{27,27}]
+    node _GEN_63 = mux(eq(UInt<1>("h1"), _wCpx_T_1), twiddleROM_1_imag, _GEN_62) @[FFT.scala 180:{23,23}]
+    node twiddleROM_cpx_2_imag = SInt<32>("h-4000") @[FFT.scala 49:19 52:14]
+    node twiddleROM_2_imag = twiddleROM_cpx_2_imag @[FFT.scala 48:{27,27}]
+    node _GEN_64 = mux(eq(UInt<2>("h2"), _wCpx_T_1), twiddleROM_2_imag, _GEN_63) @[FFT.scala 180:{23,23}]
+    node twiddleROM_cpx_3_imag = SInt<32>("h-2d41") @[FFT.scala 49:19 52:14]
+    node twiddleROM_3_imag = twiddleROM_cpx_3_imag @[FFT.scala 48:{27,27}]
+    node _GEN_65 = mux(eq(UInt<2>("h3"), _wCpx_T_1), twiddleROM_3_imag, _GEN_64) @[FFT.scala 180:{23,23}]
+    node _dataRegs_b_T_imag = _GEN_61 @[FFT.scala 180:23]
+    node _twiddleROM_wCpx_T_1_imag = _GEN_65 @[FFT.scala 180:23]
+    node biwi = mul(_dataRegs_b_T_imag, _twiddleROM_wCpx_T_1_imag) @[FFT.scala 180:23]
+    node _dataRegs_b_T_real_0 = _GEN_49 @[FFT.scala 181:23]
+    node _twiddleROM_wCpx_T_1_imag_0 = _GEN_65 @[FFT.scala 181:23]
+    node brwi = mul(_dataRegs_b_T_real_0, _twiddleROM_wCpx_T_1_imag_0) @[FFT.scala 181:23]
+    node _dataRegs_b_T_imag_0 = _GEN_61 @[FFT.scala 182:23]
+    node _twiddleROM_wCpx_T_1_real_0 = _GEN_53 @[FFT.scala 182:23]
+    node biwr = mul(_dataRegs_b_T_imag_0, _twiddleROM_wCpx_T_1_real_0) @[FFT.scala 182:23]
+    node _bwReal_T = sub(brwr, biwi) @[FFT.scala 184:25]
+    node _bwReal_T_1 = tail(_bwReal_T, 1) @[FFT.scala 184:25]
+    node _bwReal_T_2 = asSInt(_bwReal_T_1) @[FFT.scala 184:25]
+    node bwReal = shr(_bwReal_T_2, 14) @[FFT.scala 184:33]
+    node _bwImag_T = add(brwi, biwr) @[FFT.scala 185:25]
+    node _bwImag_T_1 = tail(_bwImag_T, 1) @[FFT.scala 185:25]
+    node _bwImag_T_2 = asSInt(_bwImag_T_1) @[FFT.scala 185:25]
+    node bwImag = shr(_bwImag_T_2, 14) @[FFT.scala 185:33]
+    node _GEN_66 = validif(eq(UInt<1>("h0"), _a_T), dataRegs_0_real) @[FFT.scala 188:{25,25}]
+    node _GEN_67 = mux(eq(UInt<1>("h1"), _a_T), dataRegs_1_real, _GEN_66) @[FFT.scala 188:{25,25}]
+    node _GEN_68 = mux(eq(UInt<2>("h2"), _a_T), dataRegs_2_real, _GEN_67) @[FFT.scala 188:{25,25}]
+    node _GEN_69 = mux(eq(UInt<2>("h3"), _a_T), dataRegs_3_real, _GEN_68) @[FFT.scala 188:{25,25}]
+    node _GEN_70 = mux(eq(UInt<3>("h4"), _a_T), dataRegs_4_real, _GEN_69) @[FFT.scala 188:{25,25}]
+    node _GEN_71 = mux(eq(UInt<3>("h5"), _a_T), dataRegs_5_real, _GEN_70) @[FFT.scala 188:{25,25}]
+    node _GEN_72 = mux(eq(UInt<3>("h6"), _a_T), dataRegs_6_real, _GEN_71) @[FFT.scala 188:{25,25}]
+    node _GEN_73 = mux(eq(UInt<3>("h7"), _a_T), dataRegs_7_real, _GEN_72) @[FFT.scala 188:{25,25}]
+    node _dataRegs_a_T_real = _GEN_73 @[FFT.scala 188:25]
+    node _out1_real_T = add(_dataRegs_a_T_real, bwReal) @[FFT.scala 188:25]
+    node _out1_real_T_1 = tail(_out1_real_T, 1) @[FFT.scala 188:25]
+    node _out1_real_T_2 = asSInt(_out1_real_T_1) @[FFT.scala 188:25]
+    node _GEN_74 = validif(eq(UInt<1>("h0"), _a_T), dataRegs_0_imag) @[FFT.scala 189:{25,25}]
+    node _GEN_75 = mux(eq(UInt<1>("h1"), _a_T), dataRegs_1_imag, _GEN_74) @[FFT.scala 189:{25,25}]
+    node _GEN_76 = mux(eq(UInt<2>("h2"), _a_T), dataRegs_2_imag, _GEN_75) @[FFT.scala 189:{25,25}]
+    node _GEN_77 = mux(eq(UInt<2>("h3"), _a_T), dataRegs_3_imag, _GEN_76) @[FFT.scala 189:{25,25}]
+    node _GEN_78 = mux(eq(UInt<3>("h4"), _a_T), dataRegs_4_imag, _GEN_77) @[FFT.scala 189:{25,25}]
+    node _GEN_79 = mux(eq(UInt<3>("h5"), _a_T), dataRegs_5_imag, _GEN_78) @[FFT.scala 189:{25,25}]
+    node _GEN_80 = mux(eq(UInt<3>("h6"), _a_T), dataRegs_6_imag, _GEN_79) @[FFT.scala 189:{25,25}]
+    node _GEN_81 = mux(eq(UInt<3>("h7"), _a_T), dataRegs_7_imag, _GEN_80) @[FFT.scala 189:{25,25}]
+    node _dataRegs_a_T_imag = _GEN_81 @[FFT.scala 189:25]
+    node _out1_imag_T = add(_dataRegs_a_T_imag, bwImag) @[FFT.scala 189:25]
+    node _out1_imag_T_1 = tail(_out1_imag_T, 1) @[FFT.scala 189:25]
+    node _out1_imag_T_2 = asSInt(_out1_imag_T_1) @[FFT.scala 189:25]
+    node _dataRegs_a_T_real_0 = _GEN_73 @[FFT.scala 191:25]
+    node _out2_real_T = sub(_dataRegs_a_T_real_0, bwReal) @[FFT.scala 191:25]
+    node _out2_real_T_1 = tail(_out2_real_T, 1) @[FFT.scala 191:25]
+    node _out2_real_T_2 = asSInt(_out2_real_T_1) @[FFT.scala 191:25]
+    node _dataRegs_a_T_imag_0 = _GEN_81 @[FFT.scala 192:25]
+    node _out2_imag_T = sub(_dataRegs_a_T_imag_0, bwImag) @[FFT.scala 192:25]
+    node _out2_imag_T_1 = tail(_out2_imag_T, 1) @[FFT.scala 192:25]
+    node _out2_imag_T_2 = asSInt(_out2_imag_T_1) @[FFT.scala 192:25]
+    node s1r_rnd = shl(asSInt(UInt<2>("h1")), 0) @[FFT.scala 128:26]
+    node out1_real = asSInt(bits(_out1_real_T_2, 31, 0)) @[FFT.scala 175:20 188:15]
+    node _s1r_T = add(out1_real, s1r_rnd) @[FFT.scala 129:14]
+    node _s1r_T_1 = tail(_s1r_T, 1) @[FFT.scala 129:14]
+    node _s1r_T_2 = asSInt(_s1r_T_1) @[FFT.scala 129:14]
+    node s1r = shr(_s1r_T_2, 1) @[FFT.scala 129:21]
+    node s1i_rnd = shl(asSInt(UInt<2>("h1")), 0) @[FFT.scala 128:26]
+    node out1_imag = asSInt(bits(_out1_imag_T_2, 31, 0)) @[FFT.scala 175:20 189:15]
+    node _s1i_T = add(out1_imag, s1i_rnd) @[FFT.scala 129:14]
+    node _s1i_T_1 = tail(_s1i_T, 1) @[FFT.scala 129:14]
+    node _s1i_T_2 = asSInt(_s1i_T_1) @[FFT.scala 129:14]
+    node s1i = shr(_s1i_T_2, 1) @[FFT.scala 129:21]
+    node s2r_rnd = shl(asSInt(UInt<2>("h1")), 0) @[FFT.scala 128:26]
+    node out2_real = asSInt(bits(_out2_real_T_2, 31, 0)) @[FFT.scala 176:20 191:15]
+    node _s2r_T = add(out2_real, s2r_rnd) @[FFT.scala 129:14]
+    node _s2r_T_1 = tail(_s2r_T, 1) @[FFT.scala 129:14]
+    node _s2r_T_2 = asSInt(_s2r_T_1) @[FFT.scala 129:14]
+    node s2r = shr(_s2r_T_2, 1) @[FFT.scala 129:21]
+    node s2i_rnd = shl(asSInt(UInt<2>("h1")), 0) @[FFT.scala 128:26]
+    node out2_imag = asSInt(bits(_out2_imag_T_2, 31, 0)) @[FFT.scala 176:20 192:15]
+    node _s2i_T = add(out2_imag, s2i_rnd) @[FFT.scala 129:14]
+    node _s2i_T_1 = tail(_s2i_T, 1) @[FFT.scala 129:14]
+    node _s2i_T_2 = asSInt(_s2i_T_1) @[FFT.scala 129:14]
+    node s2i = shr(_s2i_T_2, 1) @[FFT.scala 129:21]
+    node _T_5 = bits(iIdx, 2, 0)
+    node _dataRegs_T_5_real = pad(s1r, 32) @[FFT.scala 136:{29,29}]
+    node _GEN_82 = mux(eq(UInt<1>("h0"), _T_5), _dataRegs_T_5_real, dataRegs_0_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_83 = mux(eq(UInt<1>("h1"), _T_5), _dataRegs_T_5_real, dataRegs_1_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_84 = mux(eq(UInt<2>("h2"), _T_5), _dataRegs_T_5_real, dataRegs_2_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_85 = mux(eq(UInt<2>("h3"), _T_5), _dataRegs_T_5_real, dataRegs_3_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_86 = mux(eq(UInt<3>("h4"), _T_5), _dataRegs_T_5_real, dataRegs_4_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_87 = mux(eq(UInt<3>("h5"), _T_5), _dataRegs_T_5_real, dataRegs_5_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_88 = mux(eq(UInt<3>("h6"), _T_5), _dataRegs_T_5_real, dataRegs_6_real) @[FFT.scala 136:{29,29} 59:21]
+    node _GEN_89 = mux(eq(UInt<3>("h7"), _T_5), _dataRegs_T_5_real, dataRegs_7_real) @[FFT.scala 136:{29,29} 59:21]
+    node _T_6 = bits(iIdx, 2, 0)
+    node _dataRegs_T_6_imag = pad(s1i, 32) @[FFT.scala 137:{29,29}]
+    node _GEN_90 = mux(eq(UInt<1>("h0"), _T_6), _dataRegs_T_6_imag, dataRegs_0_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_91 = mux(eq(UInt<1>("h1"), _T_6), _dataRegs_T_6_imag, dataRegs_1_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_92 = mux(eq(UInt<2>("h2"), _T_6), _dataRegs_T_6_imag, dataRegs_2_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_93 = mux(eq(UInt<2>("h3"), _T_6), _dataRegs_T_6_imag, dataRegs_3_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_94 = mux(eq(UInt<3>("h4"), _T_6), _dataRegs_T_6_imag, dataRegs_4_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_95 = mux(eq(UInt<3>("h5"), _T_6), _dataRegs_T_6_imag, dataRegs_5_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_96 = mux(eq(UInt<3>("h6"), _T_6), _dataRegs_T_6_imag, dataRegs_6_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _GEN_97 = mux(eq(UInt<3>("h7"), _T_6), _dataRegs_T_6_imag, dataRegs_7_imag) @[FFT.scala 137:{29,29} 59:21]
+    node _T_7 = bits(jIdx, 2, 0)
+    node _dataRegs_T_7_real = pad(s2r, 32) @[FFT.scala 138:{29,29}]
+    node _GEN_98 = mux(eq(UInt<1>("h0"), _T_7), _dataRegs_T_7_real, _GEN_82) @[FFT.scala 138:{29,29}]
+    node _GEN_99 = mux(eq(UInt<1>("h1"), _T_7), _dataRegs_T_7_real, _GEN_83) @[FFT.scala 138:{29,29}]
+    node _GEN_100 = mux(eq(UInt<2>("h2"), _T_7), _dataRegs_T_7_real, _GEN_84) @[FFT.scala 138:{29,29}]
+    node _GEN_101 = mux(eq(UInt<2>("h3"), _T_7), _dataRegs_T_7_real, _GEN_85) @[FFT.scala 138:{29,29}]
+    node _GEN_102 = mux(eq(UInt<3>("h4"), _T_7), _dataRegs_T_7_real, _GEN_86) @[FFT.scala 138:{29,29}]
+    node _GEN_103 = mux(eq(UInt<3>("h5"), _T_7), _dataRegs_T_7_real, _GEN_87) @[FFT.scala 138:{29,29}]
+    node _GEN_104 = mux(eq(UInt<3>("h6"), _T_7), _dataRegs_T_7_real, _GEN_88) @[FFT.scala 138:{29,29}]
+    node _GEN_105 = mux(eq(UInt<3>("h7"), _T_7), _dataRegs_T_7_real, _GEN_89) @[FFT.scala 138:{29,29}]
+    node _T_8 = bits(jIdx, 2, 0)
+    node _dataRegs_T_8_imag = pad(s2i, 32) @[FFT.scala 139:{29,29}]
+    node _GEN_106 = mux(eq(UInt<1>("h0"), _T_8), _dataRegs_T_8_imag, _GEN_90) @[FFT.scala 139:{29,29}]
+    node _GEN_107 = mux(eq(UInt<1>("h1"), _T_8), _dataRegs_T_8_imag, _GEN_91) @[FFT.scala 139:{29,29}]
+    node _GEN_108 = mux(eq(UInt<2>("h2"), _T_8), _dataRegs_T_8_imag, _GEN_92) @[FFT.scala 139:{29,29}]
+    node _GEN_109 = mux(eq(UInt<2>("h3"), _T_8), _dataRegs_T_8_imag, _GEN_93) @[FFT.scala 139:{29,29}]
+    node _GEN_110 = mux(eq(UInt<3>("h4"), _T_8), _dataRegs_T_8_imag, _GEN_94) @[FFT.scala 139:{29,29}]
+    node _GEN_111 = mux(eq(UInt<3>("h5"), _T_8), _dataRegs_T_8_imag, _GEN_95) @[FFT.scala 139:{29,29}]
+    node _GEN_112 = mux(eq(UInt<3>("h6"), _T_8), _dataRegs_T_8_imag, _GEN_96) @[FFT.scala 139:{29,29}]
+    node _GEN_113 = mux(eq(UInt<3>("h7"), _T_8), _dataRegs_T_8_imag, _GEN_97) @[FFT.scala 139:{29,29}]
+    node _T_9 = sub(halfSize, UInt<1>("h1")) @[FFT.scala 142:33]
+    node _T_10 = tail(_T_9, 1) @[FFT.scala 142:33]
+    node _T_11 = eq(kCnt, _T_10) @[FFT.scala 142:19]
+    node _T_12 = sub(numBlock, UInt<1>("h1")) @[FFT.scala 144:39]
+    node _T_13 = tail(_T_12, 1) @[FFT.scala 144:39]
+    node _T_14 = eq(blockCnt, _T_13) @[FFT.scala 144:25]
+    node _stageCnt_T = add(stageCnt, UInt<1>("h1")) @[FFT.scala 146:34]
+    node _stageCnt_T_1 = tail(_stageCnt_T, 1) @[FFT.scala 146:34]
+    node _blockCnt_T = add(blockCnt, UInt<1>("h1")) @[FFT.scala 148:34]
+    node _blockCnt_T_1 = tail(_blockCnt_T, 1) @[FFT.scala 148:34]
+    node _GEN_114 = mux(_T_14, UInt<1>("h0"), _blockCnt_T_1) @[FFT.scala 144:47 145:22 148:22]
+    node _GEN_115 = mux(_T_14, _stageCnt_T_1, stageCnt) @[FFT.scala 144:47 146:22 69:25]
+    node _kCnt_T = add(kCnt, UInt<1>("h1")) @[FFT.scala 151:24]
+    node _kCnt_T_1 = tail(_kCnt_T, 1) @[FFT.scala 151:24]
+    node _GEN_116 = mux(_T_11, UInt<1>("h0"), _kCnt_T_1) @[FFT.scala 142:41 143:16 151:16]
+    node _GEN_117 = mux(_T_11, _GEN_114, blockCnt) @[FFT.scala 142:41 70:25]
+    node _GEN_118 = mux(_T_11, _GEN_115, stageCnt) @[FFT.scala 142:41 69:25]
+    node _GEN_119 = mux(_T_4, _GEN_98, dataRegs_0_real) @[FFT.scala 108:31 59:21]
+    node _GEN_120 = mux(_T_4, _GEN_99, dataRegs_1_real) @[FFT.scala 108:31 59:21]
+    node _GEN_121 = mux(_T_4, _GEN_100, dataRegs_2_real) @[FFT.scala 108:31 59:21]
+    node _GEN_122 = mux(_T_4, _GEN_101, dataRegs_3_real) @[FFT.scala 108:31 59:21]
+    node _GEN_123 = mux(_T_4, _GEN_102, dataRegs_4_real) @[FFT.scala 108:31 59:21]
+    node _GEN_124 = mux(_T_4, _GEN_103, dataRegs_5_real) @[FFT.scala 108:31 59:21]
+    node _GEN_125 = mux(_T_4, _GEN_104, dataRegs_6_real) @[FFT.scala 108:31 59:21]
+    node _GEN_126 = mux(_T_4, _GEN_105, dataRegs_7_real) @[FFT.scala 108:31 59:21]
+    node _GEN_127 = mux(_T_4, _GEN_106, dataRegs_0_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_128 = mux(_T_4, _GEN_107, dataRegs_1_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_129 = mux(_T_4, _GEN_108, dataRegs_2_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_130 = mux(_T_4, _GEN_109, dataRegs_3_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_131 = mux(_T_4, _GEN_110, dataRegs_4_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_132 = mux(_T_4, _GEN_111, dataRegs_5_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_133 = mux(_T_4, _GEN_112, dataRegs_6_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_134 = mux(_T_4, _GEN_113, dataRegs_7_imag) @[FFT.scala 108:31 59:21]
+    node _GEN_135 = mux(_T_4, _GEN_116, kCnt) @[FFT.scala 108:31 71:25]
+    node _GEN_136 = mux(_T_4, _GEN_117, blockCnt) @[FFT.scala 108:31 70:25]
+    node _GEN_137 = mux(_T_4, _GEN_118, stageCnt) @[FFT.scala 108:31 69:25]
+    node _GEN_138 = mux(_T_4, state, UInt<2>("h3")) @[FFT.scala 108:31 154:15 65:22]
+    node _T_15 = eq(UInt<2>("h3"), state) @[FFT.scala 76:17]
+    node _T_16 = eq(io_start, UInt<1>("h0")) @[FFT.scala 165:12]
+    node _GEN_139 = mux(_T_16, UInt<2>("h0"), state) @[FFT.scala 165:23 166:15 65:22]
+    node _GEN_140 = mux(_T_15, UInt<1>("h1"), UInt<1>("h0")) @[FFT.scala 160:15 29:11 76:17]
+    node _GEN_141 = mux(_T_15, dataRegs_0_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_142 = mux(_T_15, dataRegs_0_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_143 = mux(_T_15, dataRegs_1_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_144 = mux(_T_15, dataRegs_1_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_145 = mux(_T_15, dataRegs_2_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_146 = mux(_T_15, dataRegs_2_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_147 = mux(_T_15, dataRegs_3_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_148 = mux(_T_15, dataRegs_3_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_149 = mux(_T_15, dataRegs_4_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_150 = mux(_T_15, dataRegs_4_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_151 = mux(_T_15, dataRegs_5_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_152 = mux(_T_15, dataRegs_5_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_153 = mux(_T_15, dataRegs_6_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_154 = mux(_T_15, dataRegs_6_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_155 = mux(_T_15, dataRegs_7_real, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 162:24 26:20]
+    node _GEN_156 = mux(_T_15, dataRegs_7_imag, asSInt(UInt<1>("h0"))) @[FFT.scala 76:17 163:24 27:20]
+    node _GEN_157 = mux(_T_15, _GEN_139, state) @[FFT.scala 76:17 65:22]
+    node _GEN_158 = mux(_T_3, _GEN_119, dataRegs_0_real) @[FFT.scala 76:17 59:21]
+    node _GEN_159 = mux(_T_3, _GEN_120, dataRegs_1_real) @[FFT.scala 76:17 59:21]
+    node _GEN_160 = mux(_T_3, _GEN_121, dataRegs_2_real) @[FFT.scala 76:17 59:21]
+    node _GEN_161 = mux(_T_3, _GEN_122, dataRegs_3_real) @[FFT.scala 76:17 59:21]
+    node _GEN_162 = mux(_T_3, _GEN_123, dataRegs_4_real) @[FFT.scala 76:17 59:21]
+    node _GEN_163 = mux(_T_3, _GEN_124, dataRegs_5_real) @[FFT.scala 76:17 59:21]
+    node _GEN_164 = mux(_T_3, _GEN_125, dataRegs_6_real) @[FFT.scala 76:17 59:21]
+    node _GEN_165 = mux(_T_3, _GEN_126, dataRegs_7_real) @[FFT.scala 76:17 59:21]
+    node _GEN_166 = mux(_T_3, _GEN_127, dataRegs_0_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_167 = mux(_T_3, _GEN_128, dataRegs_1_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_168 = mux(_T_3, _GEN_129, dataRegs_2_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_169 = mux(_T_3, _GEN_130, dataRegs_3_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_170 = mux(_T_3, _GEN_131, dataRegs_4_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_171 = mux(_T_3, _GEN_132, dataRegs_5_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_172 = mux(_T_3, _GEN_133, dataRegs_6_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_173 = mux(_T_3, _GEN_134, dataRegs_7_imag) @[FFT.scala 76:17 59:21]
+    node _GEN_174 = mux(_T_3, _GEN_135, kCnt) @[FFT.scala 76:17 71:25]
+    node _GEN_175 = mux(_T_3, _GEN_136, blockCnt) @[FFT.scala 76:17 70:25]
+    node _GEN_176 = mux(_T_3, _GEN_137, stageCnt) @[FFT.scala 76:17 69:25]
+    node _GEN_177 = mux(_T_3, _GEN_138, _GEN_157) @[FFT.scala 76:17]
+    node _GEN_178 = mux(_T_3, UInt<1>("h0"), _GEN_140) @[FFT.scala 29:11 76:17]
+    node _GEN_179 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_141) @[FFT.scala 76:17 26:20]
+    node _GEN_180 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_142) @[FFT.scala 76:17 27:20]
+    node _GEN_181 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_143) @[FFT.scala 76:17 26:20]
+    node _GEN_182 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_144) @[FFT.scala 76:17 27:20]
+    node _GEN_183 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_145) @[FFT.scala 76:17 26:20]
+    node _GEN_184 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_146) @[FFT.scala 76:17 27:20]
+    node _GEN_185 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_147) @[FFT.scala 76:17 26:20]
+    node _GEN_186 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_148) @[FFT.scala 76:17 27:20]
+    node _GEN_187 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_149) @[FFT.scala 76:17 26:20]
+    node _GEN_188 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_150) @[FFT.scala 76:17 27:20]
+    node _GEN_189 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_151) @[FFT.scala 76:17 26:20]
+    node _GEN_190 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_152) @[FFT.scala 76:17 27:20]
+    node _GEN_191 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_153) @[FFT.scala 76:17 26:20]
+    node _GEN_192 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_154) @[FFT.scala 76:17 27:20]
+    node _GEN_193 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_155) @[FFT.scala 76:17 26:20]
+    node _GEN_194 = mux(_T_3, asSInt(UInt<1>("h0")), _GEN_156) @[FFT.scala 76:17 27:20]
+    node _GEN_195 = mux(_T_1, _GEN_5, _GEN_158) @[FFT.scala 76:17]
+    node _GEN_196 = mux(_T_1, _GEN_6, _GEN_159) @[FFT.scala 76:17]
+    node _GEN_197 = mux(_T_1, _GEN_7, _GEN_160) @[FFT.scala 76:17]
+    node _GEN_198 = mux(_T_1, _GEN_8, _GEN_161) @[FFT.scala 76:17]
+    node _GEN_199 = mux(_T_1, _GEN_9, _GEN_162) @[FFT.scala 76:17]
+    node _GEN_200 = mux(_T_1, _GEN_10, _GEN_163) @[FFT.scala 76:17]
+    node _GEN_201 = mux(_T_1, _GEN_11, _GEN_164) @[FFT.scala 76:17]
+    node _GEN_202 = mux(_T_1, _GEN_12, _GEN_165) @[FFT.scala 76:17]
+    node _GEN_203 = mux(_T_1, _GEN_21, _GEN_166) @[FFT.scala 76:17]
+    node _GEN_204 = mux(_T_1, _GEN_22, _GEN_167) @[FFT.scala 76:17]
+    node _GEN_205 = mux(_T_1, _GEN_23, _GEN_168) @[FFT.scala 76:17]
+    node _GEN_206 = mux(_T_1, _GEN_24, _GEN_169) @[FFT.scala 76:17]
+    node _GEN_207 = mux(_T_1, _GEN_25, _GEN_170) @[FFT.scala 76:17]
+    node _GEN_208 = mux(_T_1, _GEN_26, _GEN_171) @[FFT.scala 76:17]
+    node _GEN_209 = mux(_T_1, _GEN_27, _GEN_172) @[FFT.scala 76:17]
+    node _GEN_210 = mux(_T_1, _GEN_28, _GEN_173) @[FFT.scala 76:17]
+    node _GEN_211 = mux(_T_1, _GEN_37, indexCnt) @[FFT.scala 76:17 68:25]
+    node _GEN_212 = mux(_T_1, _GEN_38, _GEN_176) @[FFT.scala 76:17]
+    node _GEN_213 = mux(_T_1, _GEN_39, _GEN_175) @[FFT.scala 76:17]
+    node _GEN_214 = mux(_T_1, _GEN_40, _GEN_174) @[FFT.scala 76:17]
+    node _GEN_215 = mux(_T_1, _GEN_41, _GEN_177) @[FFT.scala 76:17]
+    node _GEN_216 = mux(_T_1, UInt<1>("h0"), _GEN_178) @[FFT.scala 29:11 76:17]
+    node _GEN_217 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_179) @[FFT.scala 76:17 26:20]
+    node _GEN_218 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_180) @[FFT.scala 76:17 27:20]
+    node _GEN_219 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_181) @[FFT.scala 76:17 26:20]
+    node _GEN_220 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_182) @[FFT.scala 76:17 27:20]
+    node _GEN_221 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_183) @[FFT.scala 76:17 26:20]
+    node _GEN_222 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_184) @[FFT.scala 76:17 27:20]
+    node _GEN_223 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_185) @[FFT.scala 76:17 26:20]
+    node _GEN_224 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_186) @[FFT.scala 76:17 27:20]
+    node _GEN_225 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_187) @[FFT.scala 76:17 26:20]
+    node _GEN_226 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_188) @[FFT.scala 76:17 27:20]
+    node _GEN_227 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_189) @[FFT.scala 76:17 26:20]
+    node _GEN_228 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_190) @[FFT.scala 76:17 27:20]
+    node _GEN_229 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_191) @[FFT.scala 76:17 26:20]
+    node _GEN_230 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_192) @[FFT.scala 76:17 27:20]
+    node _GEN_231 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_193) @[FFT.scala 76:17 26:20]
+    node _GEN_232 = mux(_T_1, asSInt(UInt<1>("h0")), _GEN_194) @[FFT.scala 76:17 27:20]
+    node _GEN_233 = mux(_T, _GEN_0, _GEN_211) @[FFT.scala 76:17]
+    node _GEN_234 = mux(_T, _GEN_1, _GEN_212) @[FFT.scala 76:17]
+    node _GEN_235 = mux(_T, _GEN_2, _GEN_213) @[FFT.scala 76:17]
+    node _GEN_236 = mux(_T, _GEN_3, _GEN_214) @[FFT.scala 76:17]
+    node _GEN_237 = mux(_T, _GEN_4, _GEN_215) @[FFT.scala 76:17]
+    node _GEN_238 = mux(_T, dataRegs_0_real, _GEN_195) @[FFT.scala 76:17 59:21]
+    node _GEN_239 = mux(_T, dataRegs_1_real, _GEN_196) @[FFT.scala 76:17 59:21]
+    node _GEN_240 = mux(_T, dataRegs_2_real, _GEN_197) @[FFT.scala 76:17 59:21]
+    node _GEN_241 = mux(_T, dataRegs_3_real, _GEN_198) @[FFT.scala 76:17 59:21]
+    node _GEN_242 = mux(_T, dataRegs_4_real, _GEN_199) @[FFT.scala 76:17 59:21]
+    node _GEN_243 = mux(_T, dataRegs_5_real, _GEN_200) @[FFT.scala 76:17 59:21]
+    node _GEN_244 = mux(_T, dataRegs_6_real, _GEN_201) @[FFT.scala 76:17 59:21]
+    node _GEN_245 = mux(_T, dataRegs_7_real, _GEN_202) @[FFT.scala 76:17 59:21]
+    node _GEN_246 = mux(_T, dataRegs_0_imag, _GEN_203) @[FFT.scala 76:17 59:21]
+    node _GEN_247 = mux(_T, dataRegs_1_imag, _GEN_204) @[FFT.scala 76:17 59:21]
+    node _GEN_248 = mux(_T, dataRegs_2_imag, _GEN_205) @[FFT.scala 76:17 59:21]
+    node _GEN_249 = mux(_T, dataRegs_3_imag, _GEN_206) @[FFT.scala 76:17 59:21]
+    node _GEN_250 = mux(_T, dataRegs_4_imag, _GEN_207) @[FFT.scala 76:17 59:21]
+    node _GEN_251 = mux(_T, dataRegs_5_imag, _GEN_208) @[FFT.scala 76:17 59:21]
+    node _GEN_252 = mux(_T, dataRegs_6_imag, _GEN_209) @[FFT.scala 76:17 59:21]
+    node _GEN_253 = mux(_T, dataRegs_7_imag, _GEN_210) @[FFT.scala 76:17 59:21]
+    node _GEN_254 = mux(_T, UInt<1>("h0"), _GEN_216) @[FFT.scala 29:11 76:17]
+    node _GEN_255 = mux(_T, asSInt(UInt<1>("h0")), _GEN_217) @[FFT.scala 76:17 26:20]
+    node _GEN_256 = mux(_T, asSInt(UInt<1>("h0")), _GEN_218) @[FFT.scala 76:17 27:20]
+    node _GEN_257 = mux(_T, asSInt(UInt<1>("h0")), _GEN_219) @[FFT.scala 76:17 26:20]
+    node _GEN_258 = mux(_T, asSInt(UInt<1>("h0")), _GEN_220) @[FFT.scala 76:17 27:20]
+    node _GEN_259 = mux(_T, asSInt(UInt<1>("h0")), _GEN_221) @[FFT.scala 76:17 26:20]
+    node _GEN_260 = mux(_T, asSInt(UInt<1>("h0")), _GEN_222) @[FFT.scala 76:17 27:20]
+    node _GEN_261 = mux(_T, asSInt(UInt<1>("h0")), _GEN_223) @[FFT.scala 76:17 26:20]
+    node _GEN_262 = mux(_T, asSInt(UInt<1>("h0")), _GEN_224) @[FFT.scala 76:17 27:20]
+    node _GEN_263 = mux(_T, asSInt(UInt<1>("h0")), _GEN_225) @[FFT.scala 76:17 26:20]
+    node _GEN_264 = mux(_T, asSInt(UInt<1>("h0")), _GEN_226) @[FFT.scala 76:17 27:20]
+    node _GEN_265 = mux(_T, asSInt(UInt<1>("h0")), _GEN_227) @[FFT.scala 76:17 26:20]
+    node _GEN_266 = mux(_T, asSInt(UInt<1>("h0")), _GEN_228) @[FFT.scala 76:17 27:20]
+    node _GEN_267 = mux(_T, asSInt(UInt<1>("h0")), _GEN_229) @[FFT.scala 76:17 26:20]
+    node _GEN_268 = mux(_T, asSInt(UInt<1>("h0")), _GEN_230) @[FFT.scala 76:17 27:20]
+    node _GEN_269 = mux(_T, asSInt(UInt<1>("h0")), _GEN_231) @[FFT.scala 76:17 26:20]
+    node _GEN_270 = mux(_T, asSInt(UInt<1>("h0")), _GEN_232) @[FFT.scala 76:17 27:20]
+    io_out_0_real <= _GEN_255
+    io_out_0_imag <= _GEN_256
+    io_out_1_real <= _GEN_257
+    io_out_1_imag <= _GEN_258
+    io_out_2_real <= _GEN_259
+    io_out_2_imag <= _GEN_260
+    io_out_3_real <= _GEN_261
+    io_out_3_imag <= _GEN_262
+    io_out_4_real <= _GEN_263
+    io_out_4_imag <= _GEN_264
+    io_out_5_real <= _GEN_265
+    io_out_5_imag <= _GEN_266
+    io_out_6_real <= _GEN_267
+    io_out_6_imag <= _GEN_268
+    io_out_7_real <= _GEN_269
+    io_out_7_imag <= _GEN_270
+    io_done <= _GEN_254
+    dataRegs_0_real <= _GEN_238
+    dataRegs_0_imag <= _GEN_246
+    dataRegs_1_real <= _GEN_239
+    dataRegs_1_imag <= _GEN_247
+    dataRegs_2_real <= _GEN_240
+    dataRegs_2_imag <= _GEN_248
+    dataRegs_3_real <= _GEN_241
+    dataRegs_3_imag <= _GEN_249
+    dataRegs_4_real <= _GEN_242
+    dataRegs_4_imag <= _GEN_250
+    dataRegs_5_real <= _GEN_243
+    dataRegs_5_imag <= _GEN_251
+    dataRegs_6_real <= _GEN_244
+    dataRegs_6_imag <= _GEN_252
+    dataRegs_7_real <= _GEN_245
+    dataRegs_7_imag <= _GEN_253
+    state <= mux(reset, UInt<2>("h0"), _GEN_237) @[FFT.scala 65:{22,22}]
+    indexCnt <= mux(reset, UInt<4>("h0"), _GEN_233) @[FFT.scala 68:{25,25}]
+    stageCnt <= mux(reset, UInt<2>("h0"), _GEN_234) @[FFT.scala 69:{25,25}]
+    blockCnt <= mux(reset, UInt<3>("h0"), _GEN_235) @[FFT.scala 70:{25,25}]
+    kCnt <= mux(reset, UInt<3>("h0"), _GEN_236) @[FFT.scala 71:{25,25}]

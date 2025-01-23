@@ -1,4 +1,40 @@
-[0m[[0m[31merror[0m] [0m[0m/home/kinzaa/Desktop/5-Stage-RV32I/src/main/scala/Pipeline/Main.scala:144:21: value ID_EX_emRead is not a member of chisel3.Bundle{val IF_ID_inst: chisel3.UInt; val ID_EX_memRead: chisel3.Bool; val ID_EX_rd: chisel3.UInt; val pc_in: chisel3.SInt; val current_pc: chisel3.SInt; val inst_forward: chisel3.Bool; val pc_forward: chisel3.Bool; val ctrl_forward: chisel3.Bool; val inst_out: chisel3.UInt; val pc_out: chisel3.SInt; val current_pc_out: chisel3.SInt}[0m
-[0m[[0m[31merror[0m] [0m[0m    HazardDetect.io.ID_EX_emRead := ID_EX_.io.ctrl_MemRd_out[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:24: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:53: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(2)[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/FFT.scala:105:56: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:24: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:53: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(2)[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:107:56: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val shiftAmt = Mux(stageCnt === (logN-1).U, 2, 1)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:26: inferred type arguments [Int] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data][0m
+[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:39: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(1)[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/main/scala/fft/IFFT.scala:136:42: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
+[0m[[0m[31merror[0m] [0m[0m required: T[0m
+[0m[[0m[31merror[0m] [0m[0m        val scaleShift = Mux(io.mode, 1, logN)[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m9 errors found[0m

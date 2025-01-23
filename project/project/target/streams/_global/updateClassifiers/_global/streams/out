@@ -1,3 +1,4 @@
-[0m[[0m[0mdebug[0m] [0m[0mnot up to date. inChanged = true, force = false[0m
-[0m[[0m[0mdebug[0m] [0m[0mUpdating ProjectRef(uri("file:/home/kinzaa/Desktop/5-Stage-RV32I/project/project/"), "root-5-stage-rv32i-build-build")...[0m
-[0m[[0m[0mdebug[0m] [0m[0mDone updating ProjectRef(uri("file:/home/kinzaa/Desktop/5-Stage-RV32I/project/project/"), "root-5-stage-rv32i-build-build")[0m
+[0m[[0m[33mwarn[0m] [0m[0msbt-bloop-1.6.0-sources.jar no longer exists at /home/kinzaa/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.6.0/sbt-bloop-1.6.0-sources.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mnot up to date. inChanged = false, force = false[0m
+[0m[[0m[0mdebug[0m] [0m[0mUpdating ProjectRef(uri("file:/home/cans/5-stage-RV32I/project/project/"), "root-5-stage-rv32i-build-build")...[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone updating ProjectRef(uri("file:/home/cans/5-stage-RV32I/project/project/"), "root-5-stage-rv32i-build-build")[0m

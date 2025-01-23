@@ -42,7 +42,7 @@
   {
     "class":"firrtl.annotations.LoadMemoryAnnotation",
     "target":"PIPELINE.InstMem.imem",
-    "fileName":"/home/kinzaa/Desktop/5-Stage-RV32I/src/main/scala/Pipeline/test.txt",
+    "fileName":"//home/cans/5-stage-RV32I/src/main/scala/Pipeline/test.txt",
     "hexOrBinary":"h",
     "originalMemoryNameOpt":"imem"
   },

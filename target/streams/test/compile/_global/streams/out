@@ -1,6 +1,16 @@
-[0m[[0m[31merror[0m] [0m[0m/home/kinzaa/Desktop/5-stage-pipeline-RV32I/src/test/scala/pipeline/MAtest.scala:11:35: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.SInt[0m
-[0m[[0m[31merror[0m] [0m[0m            x.io.writeData.poke(0.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/test/scala/ForwardingUnitTest.scala:9:14: not found: type ForwardingUnit[0m
+[0m[[0m[31merror[0m] [0m[0m    test(new ForwardingUnit) { dut =>[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/test/scala/HazardDetectionTest.scala:9:14: not found: type HazardDetectionUnit[0m
+[0m[[0m[31merror[0m] [0m[0m    test(new HazardDetectionUnit) { dut =>[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/test/scala/HazardDetectionTest.scala:25:14: not found: type HazardDetectionUnit[0m
+[0m[[0m[31merror[0m] [0m[0m    test(new HazardDetectionUnit) { dut =>[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/test/scala/HazardDetectionTest.scala:41:14: not found: type HazardDetectionUnit[0m
+[0m[[0m[31merror[0m] [0m[0m    test(new HazardDetectionUnit) { dut =>[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cans/5-stage-RV32I/src/test/scala/HazardDetectionTest.scala:57:14: not found: type HazardDetectionUnit[0m
+[0m[[0m[31merror[0m] [0m[0m    test(new HazardDetectionUnit) { dut =>[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m

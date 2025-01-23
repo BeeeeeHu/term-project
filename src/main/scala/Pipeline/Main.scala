@@ -17,7 +17,7 @@ class PIPELINE extends Module {
     val PC4                 =   Module(new PC4)
 
     // Memory   
-    val InstMemory          =   Module(new InstMem ("/home/kinzaa/Desktop/5-Stage-RV32I/src/main/scala/Pipeline/test.txt"))
+    val InstMemory          =   Module(new InstMem ("//home/cans/5-stage-RV32I/src/main/scala/Pipeline/test.txt"))
     val DataMemory          =   Module(new DataMemory)
 
     // Helping Units

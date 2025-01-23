@@ -1,1 +1,1 @@
-["gcd.GCDSpec","Pipeline.TOPTest"]
+["Pipeline.TOPTest","rv32i.core.ForwardingUnitTest","FFT.IFFTSpec","FFT.FFTSpec","FFT.FFTPipelineSpec","gcd.GCDSpec","rv32i.core.HazardDetectionTest"]
